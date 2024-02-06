@@ -1,4 +1,6 @@
-const ListPageView = ({ posts }) => {
+import PopupController from "../../components/PopUp/PopupController";
+
+const ListPageView = ({ posts, setIsOpen, isOpen }) => {
   return (
     <main className="container-sm px-5 py-5  md:px-40 lg:px-52">
       <h1>
@@ -15,12 +17,19 @@ const ListPageView = ({ posts }) => {
           >
             <div className="flex justify-between">
               <h3>{post.title}</h3>
-              <p className="text-yellow-500">{post.user}</p>
+              <p
+                onClick={() => setIsOpen(post.user)}
+                className="text-yellow-500"
+              >
+                {post.user}
+              </p>
             </div>
             <p className="mt-4 text-slate-300">{post.text}</p>
           </div>
         ))
       )}
+
+      {isOpen && <PopupController setIsOpen={setIsOpen} isOpen={isOpen} />}
     </main>
   );
 };

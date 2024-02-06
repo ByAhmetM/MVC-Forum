@@ -4,11 +4,12 @@ import Model from "./ListPageModel";
 
 const ListPageController = () => {
   const [posts, setPosts] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     Model.getPosts().then((data) => setPosts(data));
   }, []);
-  return <ListPageView posts={posts} />;
+  return <ListPageView isOpen={isOpen} setIsOpen={setIsOpen} posts={posts} />;
 };
 
 export default ListPageController;
